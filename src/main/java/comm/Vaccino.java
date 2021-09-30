@@ -1,5 +1,5 @@
 package comm;
-public enum Vacino
+public enum Vaccino
 {
     Pfizer,
     AstraZeneca,

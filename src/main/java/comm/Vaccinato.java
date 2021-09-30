@@ -7,7 +7,7 @@ public class Vaccinato implements Serializable
 {
     private String cFiscale;
     protected Calendar dataVacinazione;
-    protected Vacino tipo;
+    protected Vaccino tipo;
     
     public Vaccinato(String cF)
     {
