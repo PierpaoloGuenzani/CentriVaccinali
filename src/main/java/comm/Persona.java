@@ -7,8 +7,8 @@ import java.util.Calendar;
 
 public class Persona implements Serializable
 {
-    private static final long serialVersionUID = 1L;
-    protected String nome, cognome, codiceFiscale, email, password;
+    protected String nome, cognome, email, password;
+    protected final String codiceFiscale;
     protected Calendar dataNascita;
 
     public Persona(String codiceFiscale, String password)
@@ -32,6 +32,18 @@ public class Persona implements Serializable
             System.err.println("Errore mentre la cryptografia password");
         }
         return s;
+    }
+    
+    public boolean confronta(Persona p)
+    {
+        if(p.codiceFiscale.equals(this.codiceFiscale) && p.password.equals(this.password))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     //Getter e Setter
@@ -59,11 +71,6 @@ public class Persona implements Serializable
     public String getCodiceFiscale()
     {
         return codiceFiscale;
-    }
-
-    public void setCodiceFiscale(String codiceFiscale)
-    {
-        this.codiceFiscale = codiceFiscale;
     }
 
     public String getEmail()
