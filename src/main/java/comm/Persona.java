@@ -1,8 +1,6 @@
 package comm;
 
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 
 public class Persona implements Serializable
@@ -10,28 +8,12 @@ public class Persona implements Serializable
     protected String nome, cognome, email, password;
     protected final String codiceFiscale;
     protected Calendar dataNascita;
+    private Crittografia c;
 
     public Persona(String codiceFiscale, String password)
     {
         this.codiceFiscale = codiceFiscale;
-        this.password = encrypt(password);
-    }
-    
-    protected static String encrypt(String pas)
-    {
-        String s;
-        s = null;
-        try
-        {
-            MessageDigest m = MessageDigest.getInstance("MD5");
-            m.update(pas.getBytes());
-            s = String.valueOf(m.digest()); 
-        }
-        catch(NoSuchAlgorithmException ex)
-        {
-            System.err.println("Errore mentre la cryptografia password");
-        }
-        return s;
+        this.password = c.encrypt(password);
     }
     
     public boolean confronta(Persona p)
@@ -83,11 +65,11 @@ public class Persona implements Serializable
         this.email = email;
     }
 
-    public void setPassword(String controllo,String password)
+    public void setPassword(String password,String nuovaPassword)
     {
-        if(encrypt(controllo).equals(this.password))
+        if(c.encrypt(password).equals(this.password))
         {
-            this.password = encrypt(password);
+            this.password = c.encrypt(nuovaPassword);
         }
     }
 
@@ -105,5 +87,5 @@ public class Persona implements Serializable
     {
         this.dataNascita.set(anno, mese, giorno);
     }
-    
+
 }

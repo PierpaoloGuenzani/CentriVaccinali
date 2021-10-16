@@ -1,5 +1,7 @@
 package cittadini;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class LogIn extends javax.swing.JFrame
@@ -149,7 +151,16 @@ public class LogIn extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jButton1ActionPerformed
         String cfiscale = jTextField1.getText();
         String password = jPasswordField1.getText(); // deprecato non si dovrebbe usare
-        boolean r = cit.accedi(cfiscale,password);
+        boolean r;
+        r = false;
+        try
+        {
+            r = cit.accedi(cfiscale,password);
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, "Login fallito: Database non trovato", "Errore", JOptionPane.ERROR_MESSAGE);
+        }
         if(r)
         {
             this.dispose();
