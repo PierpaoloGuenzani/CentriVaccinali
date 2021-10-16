@@ -8,11 +8,6 @@ public class Centro implements Serializable
     protected String nome, via, comune, provincia;
     protected int ncivico, cap;
     protected TipologiaCentro tipo;
-    
-    public Centro()
-    {
-        
-    }
 
     public Centro(String nome, String via, String comune, String provincia, int ncivico, int cap, TipologiaCentro tipo)
     {
