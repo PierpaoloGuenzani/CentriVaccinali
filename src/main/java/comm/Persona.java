@@ -5,10 +5,11 @@ import java.util.Calendar;
 
 public class Persona implements Serializable
 {
-    protected String nome, cognome, email, password;
-    protected final String codiceFiscale;
-    protected Calendar dataNascita;
-    private Crittografia c;
+    protected String nome, cognome, email, password; //4 byte * carattere (15 nome , 20 cognome, 50 email, 15 password) = 60 + 80 + 200 + 60 = 400 byte
+    protected final String codiceFiscale; // (16 caratteri) = 64 byte
+    protected Calendar dataNascita; // long = 8 byte
+    //totale 472 byte per persona * 60000000 popolazione italiana = 28320000000 = 27009 MB = 26,3 GB
+    private static Crittografia c;
 
     public Persona(String codiceFiscale, String password)
     {

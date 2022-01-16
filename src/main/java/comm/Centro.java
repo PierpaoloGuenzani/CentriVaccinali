@@ -98,4 +98,12 @@ public class Centro implements Serializable
         this.tipo = tipo;
     }
     
+    @Override
+    public String toString()
+    {
+        String s;
+        s = "Nome centro : " + nome + " tipologia : " + tipo + "\nindirizzo : " + cap +
+            " città : " + comune + "\n via : " + via + " " + ncivico;
+        return s;
+    }
 }

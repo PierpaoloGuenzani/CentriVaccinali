@@ -1,12 +1,15 @@
 package cittadini;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class LogIn extends javax.swing.JFrame
 {
+
     private final Cittadini cit;
+
     public LogIn(Cittadini c)
     {
         initComponents();
@@ -155,22 +158,24 @@ public class LogIn extends javax.swing.JFrame
         r = false;
         try
         {
-            r = cit.accedi(cfiscale,password);
+            r = cit.accedi(cfiscale, password);
+            if(r)
+            {
+                // codice gestione vero;
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Login fallito: Codice fiscale o Password errati", "Errore", JOptionPane.ERROR_MESSAGE);
+                jTextField1.setText("");
+                jPasswordField1.setText("");
+            }
         }
-        catch(Exception ex)
+        catch(IOException ex)
         {
             JOptionPane.showMessageDialog(null, "Login fallito: Database non trovato", "Errore", JOptionPane.ERROR_MESSAGE);
         }
-        if(r)
-        {
-            this.dispose();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Login fallito: Codice fiscale o Password errati", "Errore", JOptionPane.ERROR_MESSAGE);
-            jTextField1.setText("");
-            jPasswordField1.setText("");
-        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
